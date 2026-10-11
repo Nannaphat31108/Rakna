@@ -60,18 +60,6 @@
     display: grid; place-items: center;
     padding: 24px 16px;
   }
-  .hello {
-    position: absolute; top: max(26px, env(safe-area-inset-top)); left: 0; right: 0;
-    text-align: center; z-index: 5;
-  }
-  .hello h1 {
-    font-family: "IBM Plex Sans Thai", sans-serif; font-weight: 400;
-    font-size: clamp(24px, 4.6vw, 38px); letter-spacing: .02em; color: var(--rose);
-    text-shadow: 0 2px 0 #fff;
-    line-height: 1.5;
-  }
-  .hello p { font-size: clamp(13px, 2.4vw, 16px); color: var(--ink-soft); }
-
   .polaroid {
     position: absolute;
     background: #fff;
@@ -310,12 +298,12 @@
     .p4 { width: 200px; height: 140px; right: 4%; bottom: 7%; }
   }
   @media (max-width: 640px) {
-    .hero { padding-top: 100px; padding-bottom: 40px; }
+    .hero { padding-top: 60px; padding-bottom: 40px; }
     .polaroid { padding: 5px 5px 20px; }
     .polaroid figcaption { font-size: 10px; bottom: 3px; }
     .polaroid::before { width: 36px; height: 14px; top: -7px; }
-    .p1 { width: 27vw; height: 37vw; left: 4vw; top: 110px; }
-    .p3 { width: 27vw; height: 37vw; right: 4vw; top: 104px; }
+    .p1 { width: 27vw; height: 37vw; left: 4vw; top: 40px; }
+    .p3 { width: 27vw; height: 37vw; right: 4vw; top: 34px; }
     .p2 { width: 27vw; height: 37vw; left: 5vw; bottom: 26px; }
     .p4 { width: 38vw; height: 27vw; right: 4vw; bottom: 40px; }
     .flowers-ring { width: 380px; height: 380px; }
@@ -332,7 +320,7 @@
     .music { padding: 6px; }
   }
   @media (max-height: 640px) and (max-width: 640px) {
-    .p1, .p3 { top: 92px; width: 22vw; height: 30vw; }
+    .p1, .p3 { top: 30px; width: 22vw; height: 30vw; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
@@ -344,11 +332,6 @@
   <div id="petals" aria-hidden="true"></div>
 
   <main class="hero">
-    <header class="hello">
-      <h1>ถึง ฟ้า ที่รักของเค้า</h1>
-      <p>มีจดหมายมาส่งค่ะ 💌</p>
-    </header>
-
     <figure class="polaroid p1"><img src="assets/img/fah-1.jpg" alt="ฟ้าในชุดนักเรียน"><figcaption>น่ารักที่สุด</figcaption></figure>
     <figure class="polaroid p3"><img src="assets/img/fah-3.jpg" alt="ฟ้าชูสองนิ้ว"><figcaption>คนเก่งของเค้า</figcaption></figure>
     <figure class="polaroid p2"><img src="assets/img/fah-2.jpg" alt="ฟ้าเสื้อสีฟ้า"><figcaption>รักเธอนะคะ</figcaption></figure>
