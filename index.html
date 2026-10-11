@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Mali:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #fff7f9;
@@ -26,7 +26,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
-    font-family: "Mali", system-ui, sans-serif;
+    font-family: "IBM Plex Sans Thai", system-ui, sans-serif; font-weight: 300;
     color: var(--ink);
     background:
       radial-gradient(1200px 600px at 10% -10%, #ffe1ea 0%, transparent 60%),
@@ -65,8 +65,8 @@
     text-align: center; z-index: 5;
   }
   .hello h1 {
-    font-family: "Charmonman", cursive; font-weight: 700;
-    font-size: clamp(30px, 6vw, 54px); color: var(--rose);
+    font-family: "IBM Plex Sans Thai", sans-serif; font-weight: 400;
+    font-size: clamp(24px, 4.6vw, 38px); letter-spacing: .02em; color: var(--rose);
     text-shadow: 0 2px 0 #fff;
     line-height: 1.5;
   }
@@ -87,7 +87,7 @@
   .polaroid img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
   .polaroid figcaption {
     position: absolute; bottom: 5px; left: 0; right: 0; text-align: center;
-    font-family: "Charmonman", cursive; font-size: 15px; color: var(--rose);
+    font-size: 12px; letter-spacing: .03em; color: var(--rose);
   }
   .polaroid::before { /* washi tape */
     content: ""; position: absolute; top: -10px; left: 50%; width: 56px; height: 20px;
@@ -147,7 +147,7 @@
     left: 16px; right: 16px; top: 14px; height: 180px;
     background: var(--paper); border-radius: 6px;
     display: grid; place-items: center;
-    font-family: "Charmonman", cursive; font-size: 26px; color: var(--rose);
+    font-size: 18px; letter-spacing: .04em; color: var(--rose);
     transition: transform .8s cubic-bezier(.2,.8,.2,1) .45s;
     background-image: repeating-linear-gradient(transparent 0 26px, var(--line) 26px 27px);
   }
@@ -226,8 +226,8 @@
   .letter .corner.tl { top: -34px; left: -20px; }
   .letter .corner.br { bottom: -30px; right: -18px; background-position: 30% 60%; }
   .to {
-    font-family: "Charmonman", cursive; font-weight: 700;
-    font-size: clamp(30px, 7vw, 42px); color: var(--rose); margin-bottom: 14px;
+    font-weight: 400; letter-spacing: .04em;
+    font-size: clamp(22px, 5vw, 30px); color: var(--rose); margin-bottom: 14px;
     text-align: center;
   }
   .letter p {
@@ -237,12 +237,12 @@
     transition: opacity .9s ease, transform .9s ease;
   }
   .letter p.big {
-    text-indent: 0; text-align: center; font-weight: 600; color: var(--rose);
+    text-indent: 0; text-align: center; font-weight: 500; text-wrap: balance; color: var(--rose);
     font-size: clamp(18px, 4.4vw, 22px);
   }
   .letter p.in { opacity: 1; transform: none; }
   .sign {
-    text-align: right; font-family: "Charmonman", cursive; font-size: 26px; color: var(--rose);
+    text-align: right; font-size: 17px; letter-spacing: .03em; color: var(--rose);
     opacity: 0; transition: opacity 1s ease;
   }
   .sign.in { opacity: 1; }
@@ -261,7 +261,7 @@
   .memories img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; border-radius: 2px; }
   .memories figcaption {
     position: absolute; bottom: 5px; left: 0; right: 0; text-align: center;
-    font-family: "Charmonman", cursive; color: var(--rose); font-size: 15px;
+    color: var(--rose); font-size: 12px; letter-spacing: .03em;
   }
 
   .close {
@@ -312,7 +312,7 @@
   @media (max-width: 640px) {
     .hero { padding-top: 100px; padding-bottom: 40px; }
     .polaroid { padding: 5px 5px 20px; }
-    .polaroid figcaption { font-size: 11px; bottom: 2px; }
+    .polaroid figcaption { font-size: 10px; bottom: 3px; }
     .polaroid::before { width: 36px; height: 14px; top: -7px; }
     .p1 { width: 27vw; height: 37vw; left: 4vw; top: 110px; }
     .p3 { width: 27vw; height: 37vw; right: 4vw; top: 104px; }
@@ -320,7 +320,7 @@
     .p4 { width: 38vw; height: 27vw; right: 4vw; bottom: 40px; }
     .flowers-ring { width: 380px; height: 380px; }
     .envelope { width: 260px; height: 172px; transform-origin: center; }
-    .env-paper { height: 146px; font-size: 22px; }
+    .env-paper { height: 146px; font-size: 16px; }
     .env-flap { height: 98px; }
     .seal { top: 72px; width: 46px; height: 46px; margin-left: -23px; font-size: 20px; }
     .envelope.open .env-paper { transform: translateY(-96px); }
@@ -351,7 +351,7 @@
 
     <figure class="polaroid p1"><img src="assets/img/fah-1.jpg" alt="ฟ้าในชุดนักเรียน"><figcaption>น่ารักที่สุด</figcaption></figure>
     <figure class="polaroid p3"><img src="assets/img/fah-3.jpg" alt="ฟ้าชูสองนิ้ว"><figcaption>คนเก่งของเค้า</figcaption></figure>
-    <figure class="polaroid p2"><img src="assets/img/fah-2.jpg" alt="ฟ้าเสื้อสีฟ้า"><figcaption>ฟ้าของเค้า</figcaption></figure>
+    <figure class="polaroid p2"><img src="assets/img/fah-2.jpg" alt="ฟ้าเสื้อสีฟ้า"><figcaption>รักเธอนะคะ</figcaption></figure>
     <figure class="polaroid p4"><img src="assets/img/fah-4.jpg" alt="ฟ้ากับตุ๊กตา"><figcaption>คิดถึงนะ</figcaption></figure>
     <figure class="polaroid p5"><img src="assets/img/us.jpg" alt="ภาพวาดเราสองคน"><figcaption>เรา ♡</figcaption></figure>
 
@@ -424,9 +424,9 @@
 
   function revealLetter() {
     var items = wrap.querySelectorAll('.letter p, .sign, .memories');
-    items.forEach(function (el, i) {
-      timers.push(setTimeout(function () { el.classList.add('in'); }, reduce ? 0 : 500 + i * 900));
-    });
+    timers.push(setTimeout(function () {
+      items.forEach(function (el) { el.classList.add('in'); });
+    }, reduce ? 0 : 300));
   }
 
   envelope.addEventListener('click', function () {
