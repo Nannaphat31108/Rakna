@@ -155,6 +155,11 @@
   }
   .date small { font-size: 12px; letter-spacing: .12em; color: var(--ink-soft); }
   .date b { font-weight: 500; font-size: 20px; color: var(--rose); }
+  .date { padding: 16px 26px; gap: 4px; }
+  .date .days { font-size: 34px; line-height: 1.2; }
+  .date .days span { font-variant-numeric: tabular-nums; }
+  .date .clock { font-size: 14px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .date .since { margin-top: 4px; letter-spacing: .04em; }
   .link { background: none; border: 0; cursor: pointer; color: var(--ink-soft); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
 
   /* hearts */
@@ -247,7 +252,12 @@
         <span class="label">yes!</span>
         <h2>ขอโทษที่เค้าดื้อบ่อยนะคะ<br><em>แต่เป็นแฟนกับเค้านะ</em></h2>
         <p class="lead">เค้าจะดูแลเธอให้ดีที่สุดเลย<br>รักเธอนะคะ ที่รักของเค้า ♡</p>
-        <div class="date"><small>วันแรกของเรา</small><b>16 ตุลาคม 2026</b></div>
+        <div class="date">
+          <small>คบกันมาแล้ว</small>
+          <b class="days"><span id="days">0</span> วัน</b>
+          <span class="clock" id="clock">00 ชม. 00 นาที 00 วินาที</span>
+          <small class="since">ตั้งแต่ 16 ตุลาคม 2026</small>
+        </div>
         <button class="link" id="again">ตอบใหม่อีกรอบ</button>
       </div>
       <div class="grid">
@@ -324,6 +334,20 @@
     peek.classList.remove('show'); peek.textContent = '';
     go('s2');
   });
+
+  /* days together, counted from 16 Oct 2026 00:00 Bangkok time */
+  var START = Date.parse('2026-10-16T00:00:00+07:00');
+  var daysEl = document.getElementById('days');
+  var clockEl = document.getElementById('clock');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() {
+    var t = Math.max(0, Math.floor((Date.now() - START) / 1000));
+    var d = Math.floor(t / 86400), h = Math.floor(t % 86400 / 3600), m = Math.floor(t % 3600 / 60), sec = t % 60;
+    daysEl.textContent = d.toLocaleString('th-TH');
+    clockEl.textContent = pad(h) + ' ชม. ' + pad(m) + ' นาที ' + pad(sec) + ' วินาที';
+  }
+  tick();
+  setInterval(tick, 1000);
 
   var layer = document.getElementById('hearts');
   function hearts(n) {
