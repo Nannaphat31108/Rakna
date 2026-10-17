@@ -179,82 +179,86 @@
   }
   @keyframes pulse { 50% { transform: scale(1.05); } }
 
-  /* ---------- letter ---------- */
-  .letter-wrap {
+  /* ---------- proposal ---------- */
+  .ask-wrap {
     position: fixed; inset: 0; z-index: 20;
-    display: grid; place-items: start center;
+    display: grid; place-items: center;
     overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: 56px 16px 80px;
+    padding: 40px 16px 90px;
     background: rgba(255, 238, 243, .72);
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     opacity: 0; visibility: hidden;
     transition: opacity .6s ease, visibility 0s .6s;
   }
-  .letter-wrap.show { opacity: 1; visibility: visible; transition: opacity .6s ease; }
-  .letter {
-    position: relative; width: 100%; max-width: 640px;
+  .ask-wrap.show { opacity: 1; visibility: visible; transition: opacity .6s ease; }
+  .card {
+    position: relative; width: 100%; max-width: 440px;
     background: var(--paper);
-    background-image: radial-gradient(circle at 100% 0%, #fff0f4 0%, transparent 45%);
-    border-radius: 14px;
-    padding: 48px 36px 40px;
+    background-image: radial-gradient(circle at 100% 0%, #fff0f4 0%, transparent 50%);
+    border-radius: 24px;
+    padding: 36px 28px 32px;
+    text-align: center;
     box-shadow: 0 30px 60px -25px rgba(201, 90, 120, .55);
-    transform: translateY(40px) scale(.97);
+    transform: translateY(40px) scale(.96);
     transition: transform .8s cubic-bezier(.2,.8,.2,1);
   }
-  .letter-wrap.show .letter { transform: none; }
-  .letter::before { /* left margin line */
-    content: ""; position: absolute; top: 0; bottom: 0; left: 22px; width: 2px;
-    background: rgba(244, 167, 185, .5);
-  }
-  .letter .corner {
-    position: absolute; width: 96px; height: 96px; border-radius: 50%;
+  .ask-wrap.show .card { transform: none; }
+  .card .corner {
+    position: absolute; width: 80px; height: 80px; border-radius: 50%;
     background: url("assets/img/flowers.jpg") center 45% / 260% no-repeat;
     border: 5px solid #fff; box-shadow: var(--shadow);
   }
-  .letter .corner.tl { top: -34px; left: -20px; }
-  .letter .corner.br { bottom: -30px; right: -18px; background-position: 30% 60%; }
-  .letter p {
-    font-size: clamp(16px, 3.8vw, 19px); line-height: 1.9;
-    margin-bottom: 18px; text-indent: 1.5em;
-    opacity: 0; transform: translateY(10px);
-    transition: opacity .9s ease, transform .9s ease;
+  .card .corner.tl { top: -28px; left: -18px; }
+  .card .corner.br { bottom: -40px; right: -26px; background-position: 30% 60%; }
+  .photo {
+    width: 168px; height: 168px; margin: 0 auto 22px;
+    border-radius: 50%; overflow: hidden;
+    border: 6px solid #fff; box-shadow: var(--shadow);
   }
-  .letter p.big {
-    text-indent: 0; text-align: center; font-weight: 500; text-wrap: balance; color: var(--rose);
-    font-size: clamp(18px, 4.4vw, 22px);
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
+  .eyebrow { font-size: 15px; color: var(--ink-soft); letter-spacing: .06em; margin-bottom: 6px; }
+  .question {
+    font-size: clamp(24px, 6vw, 30px); font-weight: 500; color: var(--rose);
+    line-height: 1.45; text-wrap: balance; margin-bottom: 28px;
   }
-  .letter p.in { opacity: 1; transform: none; }
-  .sign {
-    text-align: right; font-size: 17px; letter-spacing: .03em; color: var(--rose);
-    opacity: 0; transition: opacity 1s ease;
+  .answers { display: grid; gap: 12px; }
+  .btn {
+    font: inherit; font-size: 17px; font-weight: 500; letter-spacing: .02em;
+    padding: 14px 20px; border-radius: 999px; cursor: pointer;
+    border: 1.5px solid var(--pink-deep);
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
   }
-  .sign.in { opacity: 1; }
+  .btn:active { transform: scale(.97); }
+  .btn:focus-visible { outline: 3px dashed var(--pink-deep); outline-offset: 4px; }
+  .btn.yes {
+    background: linear-gradient(135deg, #f29bb1, var(--pink-deep)); color: #fff; border-color: transparent;
+    box-shadow: 0 12px 24px -12px rgba(201, 90, 120, .8);
+  }
+  .btn.alt { background: #fff; color: var(--rose); }
+  .btn.yes:hover, .btn.alt:hover { transform: translateY(-2px); }
 
-  .memories {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    margin-top: 28px; opacity: 0; transition: opacity 1s ease;
+  .step { display: none; }
+  .step.active { display: block; animation: rise .6s cubic-bezier(.2,.8,.2,1); }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .big-heart { font-size: 54px; line-height: 1; color: var(--pink-deep); margin-bottom: 10px; animation: beat 1.2s ease-in-out infinite; }
+  @keyframes beat { 0%, 100% { transform: scale(1); } 20% { transform: scale(1.18); } 40% { transform: scale(.96); } }
+  .result-title { font-size: clamp(22px, 5.6vw, 28px); font-weight: 500; color: var(--rose); line-height: 1.45; margin-bottom: 10px; text-wrap: balance; }
+  .result-text { font-size: 16px; line-height: 1.8; color: var(--ink); text-wrap: balance; }
+  .day {
+    display: inline-block; margin-top: 18px; padding: 8px 18px; border-radius: 999px;
+    background: var(--bg-2); color: var(--rose); font-size: 14px; letter-spacing: .03em;
   }
-  .memories.in { opacity: 1; }
-  .memories figure {
-    background: #fff; padding: 8px 8px 30px; border-radius: 4px; box-shadow: var(--shadow);
-    position: relative;
+  .duo { display: flex; justify-content: center; gap: 12px; margin-top: 22px; }
+  .duo img {
+    width: 42%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px;
+    background: #fff; padding: 6px 6px 22px; box-shadow: var(--shadow);
   }
-  .memories figure:nth-child(1) { transform: rotate(-3deg); }
-  .memories figure:nth-child(2) { transform: rotate(3deg); }
-  .memories img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; border-radius: 2px; }
-  .memories figcaption {
-    position: absolute; bottom: 5px; left: 0; right: 0; text-align: center;
-    color: var(--rose); font-size: 12px; letter-spacing: .03em;
+  .duo img:first-child { transform: rotate(-4deg); }
+  .duo img:last-child { transform: rotate(4deg); }
+  .again {
+    margin-top: 22px; background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: 13px; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px;
   }
-
-  .close {
-    position: fixed; top: max(14px, env(safe-area-inset-top)); left: 14px; z-index: 30;
-    border: 0; cursor: pointer;
-    background: #fff; color: var(--rose); font: inherit; font-size: 14px;
-    padding: 8px 14px; border-radius: 999px; box-shadow: 0 6px 16px -8px rgba(201, 90, 120, .6);
-    opacity: 0; visibility: hidden; transition: opacity .4s ease;
-  }
-  .letter-wrap.show ~ .close { opacity: 1; visibility: visible; }
 
   /* ---------- music ---------- */
   .music {
@@ -308,9 +312,9 @@
     .seal { top: 72px; width: 46px; height: 46px; margin-left: -23px; font-size: 20px; }
     .envelope.open .env-paper { transform: translateY(-96px); }
     .stage { margin-top: 30px; }
-    .letter { padding: 44px 22px 36px 30px; }
-    .letter::before { left: 14px; }
-    .letter .corner { width: 72px; height: 72px; }
+    .card { padding: 32px 22px 28px; }
+    .card .corner { width: 64px; height: 64px; }
+    .photo { width: 140px; height: 140px; }
     .music span.label { display: none; }
     .music { padding: 6px; }
   }
@@ -335,51 +339,64 @@
 
     <div class="stage">
       <div class="flowers-ring" aria-hidden="true"></div>
-      <button class="envelope" id="envelope" aria-label="เปิดจดหมาย">
+      <button class="envelope" id="envelope" aria-label="เปิดซอง">
         <span class="env-back"></span>
-        <span class="env-paper">รักเธอนะ ♡</span>
+        <span class="env-paper">มีเรื่องจะถาม ♡</span>
         <span class="env-front"></span>
         <span class="env-flap"></span>
         <span class="seal">♥</span>
       </button>
-      <span class="tap">แตะเพื่อเปิดจดหมาย</span>
+      <span class="tap">แตะเพื่อเปิดดูนะคะ</span>
     </div>
   </main>
 
-  <section class="letter-wrap" id="letterWrap" aria-hidden="true">
-    <article class="letter" id="letter">
+  <section class="ask-wrap" id="askWrap" aria-hidden="true">
+    <article class="card" aria-live="polite">
       <span class="corner tl" aria-hidden="true"></span>
 
-      <p class="big">เค้ารักเธอนะฟ้า<br>รักมาก&nbsp;ๆ เลยค่ะที่รักของเค้า</p>
-      <p>เค้าขอโทษถ้าในอดีต ปัจจุบัน อนาคต เค้าทำตัวไม่น่ารักกับเธอหรือเราทะเลาะกัน แต่เค้าสัญญาว่าเค้าจะทำวันนี้ให้ดีที่สุด จะทำให้เธอเป็นคนที่โชคดีที่สุด</p>
-      <p>เค้าจะรักเธอให้ดีที่สุดเท่าที่คน&nbsp;ๆ นึงจะทำได้ เธอจะเป็นคนเดียวที่อยู่ในใจเค้า</p>
-      <p>ถึงตอนแรกที่เรารู้จักกันเค้าอาจจะยังไม่พร้อมมีใคร แต่ตอนนี้เค้าพร้อมมาก&nbsp;ๆ ที่จะมีเธออยู่ในชีวิต</p>
-      <p>เค้าอาจไม่ได้อยู่ข้างเธอจริง&nbsp;ๆ หรือแตะตัวเธอได้ หรือกอดเธอได้จริง&nbsp;ๆ เวลาเธอเศร้าหรือเสียใจ แต่เค้าสัญญาว่าเมื่อไหร่ที่เธอทุกข์ใจ เค้าจะอยู่กอดปลอบเธอเสมอนะคะ</p>
-      <p class="big">เค้ารักเธอนะคะที่รักของเค้า ♡</p>
-
-      <div class="sign">รักเธอที่สุด ♡</div>
-
-      <div class="memories">
-        <figure><img src="assets/img/us.jpg" alt="ภาพวาดเราสองคน"><figcaption>เราสองคน</figcaption></figure>
-        <figure><img src="assets/img/note.jpg" alt="โน้ตที่เขียนให้กัน"><figcaption>เค้าอยู่ข้าง&nbsp;ๆ เสมอ</figcaption></figure>
+      <div class="step active" id="stepAsk">
+        <div class="photo"><img src="assets/img/us.jpg" alt="ภาพวาดเราสองคน"></div>
+        <p class="eyebrow">ฟ้าคะ…</p>
+        <h1 class="question">เป็นแฟนกับเค้า<br>ได้ไหมคะ?</h1>
+        <div class="answers">
+          <button class="btn yes" data-answer="yes">เป็น</button>
+          <button class="btn alt" data-answer="alt">เป็นแต่อีกข้อนึง</button>
+        </div>
       </div>
+
+      <div class="step" id="stepAlt">
+        <div class="big-heart" aria-hidden="true">♡</div>
+        <p class="result-title">อีกข้อนึงก็คือ…</p>
+        <p class="result-text">ก็ <b>เป็น</b> อยู่ดีนั่นแหละค่ะ 😝<br>ตอบผิดไม่ได้หรอก เค้าเตรียมไว้แล้ว</p>
+      </div>
+
+      <div class="step" id="stepYes">
+        <div class="big-heart" aria-hidden="true">♥</div>
+        <p class="result-title">เย้! ตั้งแต่วันนี้<br>ฟ้าเป็นแฟนเค้าแล้วนะคะ</p>
+        <p class="result-text">เค้าจะดูแลเธอให้ดีที่สุดเลย<br>รักเธอนะคะ ที่รักของเค้า ♡</p>
+        <span class="day" id="day"></span>
+        <div class="duo">
+          <img src="assets/img/fah-3.jpg" alt="ฟ้าชูสองนิ้ว">
+          <img src="assets/img/us.jpg" alt="ภาพวาดเราสองคน">
+        </div>
+        <button class="again" id="again">ตอบใหม่อีกรอบ</button>
+      </div>
+
       <span class="corner br" aria-hidden="true"></span>
     </article>
   </section>
-  <button class="close" id="closeBtn">← กลับไปหน้าแรก</button>
 
   <button class="music" id="musicBtn" aria-label="เปิด/ปิดเพลง">
     <span class="disc"></span>
-    <span class="label">คนโชคดี<small>แตะเพื่อเล่นเพลง</small></span>
+    <span class="label">เพลงของเรา<small>แตะเพื่อเล่นเพลง</small></span>
     <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
-  <audio id="song" src="assets/audio/khon-chok-dee.mp3" loop preload="auto"></audio>
+  <audio id="song" src="assets/audio/song.mp3" loop preload="auto"></audio>
 
 <script>
 (function () {
   var envelope = document.getElementById('envelope');
-  var wrap = document.getElementById('letterWrap');
-  var closeBtn = document.getElementById('closeBtn');
+  var wrap = document.getElementById('askWrap');
   var song = document.getElementById('song');
   var musicBtn = document.getElementById('musicBtn');
   var hint = musicBtn.querySelector('small');
@@ -399,11 +416,8 @@
     if (song.paused) play(); else { song.pause(); setPlaying(false); }
   });
 
-  function revealLetter() {
-    var items = wrap.querySelectorAll('.letter p, .sign, .memories');
-    timers.push(setTimeout(function () {
-      items.forEach(function (el) { el.classList.add('in'); });
-    }, reduce ? 0 : 300));
+  function show(id) {
+    wrap.querySelectorAll('.step').forEach(function (el) { el.classList.toggle('active', el.id === id); });
   }
 
   envelope.addEventListener('click', function () {
@@ -414,18 +428,27 @@
     timers.push(setTimeout(function () {
       wrap.classList.add('show');
       wrap.setAttribute('aria-hidden', 'false');
-      wrap.scrollTop = 0;
-      revealLetter();
     }, reduce ? 0 : 1400));
   });
 
-  closeBtn.addEventListener('click', function () {
-    timers.forEach(clearTimeout); timers = [];
-    wrap.classList.remove('show');
-    wrap.setAttribute('aria-hidden', 'true');
-    wrap.querySelectorAll('.in').forEach(function (el) { el.classList.remove('in'); });
-    envelope.classList.remove('open');
+  document.getElementById('day').textContent =
+    'วันแรกของเรา · ' + new Date().toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  wrap.querySelectorAll('[data-answer]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      timers.forEach(clearTimeout); timers = [];
+      if (btn.dataset.answer === 'alt') {
+        show('stepAlt');
+        burst();
+        timers.push(setTimeout(function () { show('stepYes'); burst(); }, reduce ? 1200 : 2800));
+      } else {
+        show('stepYes');
+        burst(); burst();
+      }
+    });
   });
+
+  document.getElementById('again').addEventListener('click', function () { show('stepAsk'); });
 
   /* petals & hearts */
   var layer = document.getElementById('petals');
