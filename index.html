@@ -210,7 +210,7 @@
     <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
     <span id="musicText">เปิดเพลง</span>
   </button>
-  <audio id="song" src="assets/audio/song.mp3" loop preload="auto"></audio>
+  <audio id="song" src="assets/audio/song.mp3" loop autoplay preload="auto"></audio>
 
   <!-- 1. intro -->
   <section class="screen intro active" id="s1">
@@ -296,8 +296,23 @@
     if (p && p.then) p.then(function () { setPlaying(true); }).catch(function () { setPlaying(false); });
     else setPlaying(true);
   }
-  musicBtn.addEventListener('click', function () {
+  musicBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
     if (song.paused) play(); else { song.pause(); setPlaying(false); }
+  });
+
+  /* autoplay: try right away; if the browser blocks it, start on the first touch anywhere */
+  var userPaused = false;
+  musicBtn.addEventListener('click', function () { userPaused = song.paused; });
+  function unlock() {
+    if (!userPaused && song.paused) play();
+    ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
+      window.removeEventListener(ev, unlock, true);
+    });
+  }
+  play();
+  ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
+    window.addEventListener(ev, unlock, { capture: true, passive: true });
   });
 
   function go(id) {
@@ -312,7 +327,7 @@
   }
 
   document.getElementById('start').addEventListener('click', function () {
-    if (song.paused) play();
+    if (song.paused && !userPaused) play();
     go('s2');
   });
 
@@ -335,14 +350,14 @@
     go('s2');
   });
 
-  /* days together, counted from 16 Oct 2026 00:00 Bangkok time */
+  /* days together: 16 Oct 2026 (Bangkok time) is day 1 */
   var START = Date.parse('2026-10-16T00:00:00+07:00');
   var daysEl = document.getElementById('days');
   var clockEl = document.getElementById('clock');
   function pad(n) { return (n < 10 ? '0' : '') + n; }
   function tick() {
     var t = Math.max(0, Math.floor((Date.now() - START) / 1000));
-    var d = Math.floor(t / 86400), h = Math.floor(t % 86400 / 3600), m = Math.floor(t % 3600 / 60), sec = t % 60;
+    var d = Math.floor(t / 86400) + 1, h = Math.floor(t % 86400 / 3600), m = Math.floor(t % 3600 / 60), sec = t % 60;
     daysEl.textContent = d.toLocaleString('th-TH');
     clockEl.textContent = pad(h) + ' ชม. ' + pad(m) + ' นาที ' + pad(sec) + ' วินาที';
   }
